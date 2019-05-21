@@ -1,5 +1,34 @@
 import React, { useState } from 'react';
 import RestaurantSearchResultComponent from './../components/RestaurantSearchResultComponent';
+import algoliasearch from 'algoliasearch/lite';
+import {
+  InstantSearch,
+  Hits,
+  SearchBox,
+  Pagination,
+  // Highlight,
+} from 'react-instantsearch-dom';
+
+const searchClient = algoliasearch(
+  '54V98YN658',
+  '488d342c46cad2e1015749231a63eaf3'
+);
+
+const Hit = props => {
+  return (
+    <div className="search-hit">
+      <p attribute="name">
+        {props.hit.name}
+      </p>
+      <p attribute="name">
+        {props.hit.url}
+      </p>
+      <p attribute="name">
+        {props.hit.display_phone}
+      </p>
+    </div>
+  )
+}
 
 const SearchContainer = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -44,14 +73,20 @@ const SearchContainer = () => {
 
   return (
     <div>
-      <h1> Search</h1>
-      Restaurant Name: <input id="whereYouAteYoFoodsInput"></input>
-      Zipcode: <input id="zipcodeOfWhereYouEatYoFoodsInput"></input>
-      <button id="yelpSearchButton" onClick={queryYelpAPI}> Search for restaurants </button>
-      <div id="searchContainer">
-        {searchResultComponents}
-      </div>
-
+      <InstantSearch indexName="yelp" searchClient={searchClient}>
+        <div>
+          <SearchBox />
+          <Hits hitComponent={Hit} />
+          {/* <Pagination /> */}
+        </div>
+      </InstantSearch>
+      {/*
+        <h1> Search</h1>
+        Restaurant Name: <input id="whereYouAteYoFoodsInput"></input>
+        Zipcode: <input id="zipcodeOfWhereYouEatYoFoodsInput"></input>
+        <button id="yelpSearchButton" onClick={queryYelpAPI}> Search for restaurants </button>
+        <div id="searchContainer">{searchResultComponents}</div>
+       */}
     </div>
   );
 };

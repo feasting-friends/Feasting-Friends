@@ -20,6 +20,7 @@ Table Schema:
  - password
 
 2. Restaurant Table: 
+ - _id
  - rating,
  - reviewCount,
  - yelpID,

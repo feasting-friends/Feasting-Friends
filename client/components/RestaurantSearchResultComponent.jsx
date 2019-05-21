@@ -1,5 +1,10 @@
 import React from 'react';
 
+const client = algoliasearch(
+  '488d342c46cad2e1015749231a63eaf3',
+  'd4fd1c2bd8718edd438f6fc30b0e8c30'
+);
+
 const RestaurantSearchResultComponent = (props) => {
 
   return (

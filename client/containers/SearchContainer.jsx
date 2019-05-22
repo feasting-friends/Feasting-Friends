@@ -4,52 +4,27 @@ import { gql } from 'apollo-boost';
 import { graphql, compose } from 'react-apollo';
 import algoliasearch from 'algoliasearch';
 
-const searchIndex = algoliasearch('54V98YN658', 'd4fd1c2bd8718edd438f6fc30b0e8c30')
+const searchIndex = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_KEY)
 const index = searchIndex.initIndex('yelp')
-
-const AddRestaurantMutation = gql`
-  mutation {
-    addRestaurant(
-        rating: $rating,
-        review_count: $review_count,
-        yelp_id: $yelp_id,
-        name: $name,
-        display_address: $display_address,
-        image_url: $image_url,
-        url: $url,
-        price: $price,
-        latitude: $latitude,
-        longitude: $longitude
-      ) {
-      rating
-      review_count
-      yelp_id
-      name
-      display_address
-      image_url
-      url
-      price
-      latitude
-      longitude
-    }
-  }
-`
+const baseUrl = `http://localhost:3000/yelp`
 
 const SearchContainer = () => {
   const [restaurantList, setRestaurantList] = useState([]);
 
   const queryYelpAPI = () => {
     const data = {
-      name: document.querySelector('#whereYouAteYoFoodsInput').value,
-      zip: document.querySelector('#zipcodeOfWhereYouEatYoFoodsInput').value
+      name: document.querySelector('#searchQuery').value,
+      zip: document.querySelector('#searchZip').value
     }
 
-    fetch(`http://localhost:3000/yelp/restaurantName/${data.name}/restaurantZip/${data.zip}`)
-      .then(resp => resp.json())
-      .then(data => {
-        index.addObjects(data, err => console.error(err))
-        setRestaurantList(data);
-      });
+    fetch(`
+      ${baseUrl}/restaurantName/${data.name}/restaurantZip/${data.zip}
+    `)
+    .then(resp => resp.json())
+    .then(data => {
+      index.addObjects(data, err => console.error(err))
+      setRestaurantList(data);
+    });
   };
 
   // function likeRestaurant(data) {
@@ -81,8 +56,8 @@ const SearchContainer = () => {
   return (
     <div>
       <h1> Search</h1>
-      Restaurant Name: <input id="whereYouAteYoFoodsInput"></input>
-      Zipcode: <input id="zipcodeOfWhereYouEatYoFoodsInput"></input>
+      Restaurant Name: <input id="searchQuery"></input>
+      Zipcode: <input id="searchZip"></input>
       <button id="yelpSearchButton" onClick={queryYelpAPI}> Search for restaurants </button>
       <div id="searchContainer">
         {searchResultComponents}
@@ -90,6 +65,34 @@ const SearchContainer = () => {
     </div>
   );
 };
+
+const AddRestaurantMutation = gql`
+  mutation {
+    addRestaurant(
+        rating: $rating,
+        review_count: $review_count,
+        yelp_id: $yelp_id,
+        name: $name,
+        display_address: $display_address,
+        image_url: $image_url,
+        url: $url,
+        price: $price,
+        latitude: $latitude,
+        longitude: $longitude
+      ) {
+      rating
+      review_count
+      yelp_id
+      name
+      display_address
+      image_url
+      url
+      price
+      latitude
+      longitude
+    }
+  }
+`
 
 export default compose(
   graphql(AddRestaurantMutation, { name: 'AddRestaurantMutation' })

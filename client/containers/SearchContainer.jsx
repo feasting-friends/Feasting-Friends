@@ -5,30 +5,13 @@ import {
   InstantSearch,
   Hits,
   SearchBox,
-  Pagination,
-  // Highlight,
 } from 'react-instantsearch-dom';
+import Hit from './../components/HitComponent';
 
 const searchClient = algoliasearch(
   '54V98YN658',
   '488d342c46cad2e1015749231a63eaf3'
 );
-
-const Hit = props => {
-  return (
-    <div className="search-hit">
-      <p attribute="name">
-        {props.hit.name}
-      </p>
-      <p attribute="name">
-        {props.hit.url}
-      </p>
-      <p attribute="name">
-        {props.hit.display_phone}
-      </p>
-    </div>
-  )
-}
 
 const SearchContainer = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -66,9 +49,14 @@ const SearchContainer = () => {
   };
 
   const searchResultComponents = [];
-  console.log(restaurantList)
   for (const restaurant of restaurantList) {
-    searchResultComponents.push(<RestaurantSearchResultComponent key={restaurant.id} data={restaurant} likeRestaurant={likeRestaurant.bind(this)} />)
+    searchResultComponents.push(
+      <RestaurantSearchResultComponent
+        key={restaurant.id}
+        data={restaurant}
+        likeRestaurant={likeRestaurant.bind(this)}
+      />
+    )
   };
 
   return (
@@ -77,7 +65,6 @@ const SearchContainer = () => {
         <div>
           <SearchBox />
           <Hits hitComponent={Hit} />
-          {/* <Pagination /> */}
         </div>
       </InstantSearch>
       {/*

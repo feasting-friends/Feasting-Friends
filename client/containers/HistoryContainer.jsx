@@ -4,12 +4,9 @@ import RestaurantComponent from '../components/RestaurantComponent'
 import React from 'react';
 import { joesFrontEndCookieParser } from './../services/authenticate';
 
-
 //Graphql query for restaurants our user has liked previously.
 const myCookies = joesFrontEndCookieParser(document.cookie);
 const myUserId = myCookies.userId;
-console.log('My cookies', myCookies);
-console.log('My user ID:', myUserId);
 const getLikesQuery = gql`
 {
   user(_id: ${myUserId}) {
@@ -70,7 +67,7 @@ const HistoryContainer = (props) => {
 };
 
 
-//binds our query to the current container by adding the output to props.  The name property we assign determines the key in props  
+//binds our query to the current container by adding the output to props.  The name property we assign determines the key in props
 //It's like redux when you use connect on map state to props and map dispatch to props
 export default compose(
   graphql(getLikesQuery, { name: "getLikesQuery" }),

@@ -51,7 +51,6 @@ const SearchContainer = () => {
       <div id="searchContainer">
         {searchResultComponents}
       </div>
-
     </div>
   );
 };

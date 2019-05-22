@@ -17,7 +17,6 @@ yelpController.searchYelp = (name, zip) => {
   client
     .search(input)
     .then(result => {
-      console.log('in yelp controller')
       return result.jsonBody.businesses;
     })
     .catch(e => console.log(e));

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import RestaurantSearchResultComponent from './../components/RestaurantSearchResultComponent';
+import algoliasearch from 'algoliasearch';
+const searchIndex = algoliasearch('54V98YN658', 'd4fd1c2bd8718edd438f6fc30b0e8c30')
+const index = searchIndex.initIndex('yelp')
 
 const SearchContainer = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -10,14 +13,11 @@ const SearchContainer = () => {
       zip: document.querySelector('#zipcodeOfWhereYouEatYoFoodsInput').value
     }
 
-    fetch(`http://localhost:3000/yelp/restaurantName/${data.name}/restaurantZip/${data.zip}`,
-      { method: 'GET' })
-      .then(resp => {
-        console.log('resp', resp);
-        return resp.json()
-      }
-      ).then(res2 => {
-        setRestaurantList(res2);
+    fetch(`http://localhost:3000/yelp/restaurantName/${data.name}/restaurantZip/${data.zip}`)
+      .then(resp => resp.json())
+      .then(data => {
+        index.addObjects(data, err => if (err) console.error(err))
+        setRestaurantList(data);
       });
   };
 
@@ -51,9 +51,9 @@ const SearchContainer = () => {
       <div id="searchContainer">
         {searchResultComponents}
       </div>
-
     </div>
   );
 };
 
 export default SearchContainer;
+

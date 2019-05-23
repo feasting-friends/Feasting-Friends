@@ -41,9 +41,9 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => res.sendFile(homeURL));
 }
 
-app.get('/yelp/restaurantName/:name/restaurantZip/:zip', searchYelp);
-
-app.post('/likes', searchForRestaurant, addRestaurant, addToLikeTable);
+//Deprecated and moved to graphql
+  // app.get('/yelp/restaurantName/:name/restaurantZip/:zip', searchYelp);
+  // app.post('/likes', searchForRestaurant, addRestaurant, addToLikeTable);
 
 app.post('/login', verifyUser, setCookie);
 

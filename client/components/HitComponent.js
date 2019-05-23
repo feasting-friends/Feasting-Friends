@@ -1,11 +1,29 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-const Wrapper = styled.section`
-  padding: 10px;
-  margin: 10px;
-  background: #FAFAFA;
+// const Wrapper = styled.section`
+//   padding: 10px;
+//   margin: 10px;
+//   background: #FAFAFA;
+//   width: 400px;
+// `;
+const Wrapper = styled.div`
+  flex-grow: 1;
   width: 400px;
+  padding: 5px;
+  margin: 15px;
+  color: #00414d;
+  text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+    0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+    0 0 40px #A5F1FF;
+  font: "Palatino";
+  border-radius: 6px;
+  :hover {
+    box-shadow: 1px 0px 10px grey;
+    background-color: white
+    transform: scale(1.01);
+  }
+
 `;
 
 const Hit = props => {

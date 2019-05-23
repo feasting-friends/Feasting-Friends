@@ -3,16 +3,14 @@ import RestaurantSearchResultComponent from './../components/RestaurantSearchRes
 import { gql } from 'apollo-boost';
 import Hit from '../components/HitComponent';
 import algoliasearch from 'algoliasearch';
-import {
-  graphql,
-  compose,
-  ApolloConsumer
-} from 'react-apollo';
+import { ApolloConsumer } from 'react-apollo';
 import {
   InstantSearch,
   Hits,
   SearchBox,
 } from 'react-instantsearch-dom';
+
+import styled from 'styled-components';
 
 const client = algoliasearch('54V98YN658', 'd4fd1c2bd8718edd438f6fc30b0e8c30');
 const searchClient = algoliasearch('54V98YN658', '488d342c46cad2e1015749231a63eaf3');
@@ -67,6 +65,75 @@ const AddRestaurantMutation = gql`
   }
 `
 
+
+
+const Restaurant = styled.div`
+  border: none;
+  background-color: white;
+  width: 300px;
+  transition: 0.3s;
+
+  :hover {
+    box-shadow: 1px 0px 10px grey;
+    transform: scale(1.01);
+  }
+`
+
+const SearchTitle = styled.h1`
+  background-color: 020101;
+  padding: 20px;
+  color: #D0F8FF;
+  text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+    0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+    0 0 40px #A5F1FF;
+  text-align: center;
+  font: "Palatino";
+  margin: 0;
+  border: 5px solid black;
+  animation: flicker 1.5s infinite alternate; 
+`
+const ResName = styled.span`
+  background-color: 020101;
+  color: #D0F8FF;
+  margin: 0;
+  padding: 10px;
+`;
+const Zip = styled.span`
+  background-color: 020101;
+  color: #D0F8FF;
+  margin: 0;
+  padding: 10px;
+`;
+
+const Padding = styled.div`
+  background-color: 020101;
+  padding: 10px;
+  margin: 0px;
+`;
+
+const Input = styled.input`
+  color: #005766;
+  :hover {
+    box-shadow: 1px 0px 10px grey;
+    transform: scale(1.01);
+  }
+  `;
+
+const Background = styled.div`
+background-color: 020101;
+`;
+
+const Recent = styled.h2`
+  color: #D0F8FF;
+  text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+    0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+    0 0 40px #A5F1FF;
+  text-align: center;
+  font: "Palatino";
+`;
+
+
+
 const SearchContainer = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [zipcode, setZipCode] = useState('');
@@ -86,10 +153,10 @@ const SearchContainer = () => {
   return (
     <ApolloConsumer>
       {client => (
-        <div>
-          <h1> Search</h1>
-          Restaurant Name: <input id="whereYouAteYoFoodsInput" onChange={(e) => setRestName(e.target.value)}></input>
-          Zipcode: <input id="zipcodeOfWhereYouEatYoFoodsInput" onChange={(e) => setZipCode(e.target.value)}></input>
+        <Background>
+          <SearchTitle> Search</SearchTitle>
+          <ResName>Restaurant Name: </ResName> <Input id="whereYouAteYoFoodsInput" onChange={(e) => setRestName(e.target.value)}></Input>
+          <Zip>Zipcode: </Zip><Input id="zipcodeOfWhereYouEatYoFoodsInput" onChange={(e) => setZipCode(e.target.value)}></Input>
 
           <button
             id="yelpSearchButton"
@@ -105,15 +172,13 @@ const SearchContainer = () => {
             }}>
             Search for restaurants
           </button>
-
+          <Padding></Padding>
           <div id="searchContainer">
             {searchResultComponents}
           </div>
 
-          <hr />
-
           <div>
-            <h2>recently viewed</h2>
+            <Recent>Recently viewed</Recent>
             <InstantSearch indexName="yelp" searchClient={searchClient}>
               <div>
                 <SearchBox />
@@ -122,7 +187,7 @@ const SearchContainer = () => {
             </InstantSearch>
           </div>
 
-        </div>
+        </Background>
       )}
     </ApolloConsumer>
   )

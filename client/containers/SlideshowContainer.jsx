@@ -5,6 +5,7 @@ import {
 	graphql,
 	compose
 } from 'react-apollo';
+import './SlideshowContainer.css'
 
 const SearchRestaurantsQuery = gql`
   { 

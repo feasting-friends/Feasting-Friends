@@ -1,11 +1,26 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-const Wrapper = styled.section`
-  padding: 10px;
-  margin: 10px;
-  background: #FAFAFA;
+// const Wrapper = styled.section`
+//   padding: 10px;
+//   margin: 10px;
+//   background: #FAFAFA;
+//   width: 400px;
+// `;
+const Wrapper = styled.div`
+  flex-grow: 1;
   width: 400px;
+  padding: 5px;
+  margin: 15px;
+  color: #00414d;
+  font: "Palatino";
+  border-radius: 6px;
+  :hover {
+    box-shadow: 1px 0px 10px grey;
+    background-color: white
+    transform: scale(1.01);
+  }
+
 `;
 
 const Hit = props => {

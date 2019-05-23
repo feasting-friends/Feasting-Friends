@@ -1,0 +1,112 @@
+.filler {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  border: 3px solid #3cefff;
+  overflow: hidden;
+  animation: spin 3s ease infinite;
+}
+
+.filler::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 2em;
+  height: 2em;
+  background-color: hsla(185, 100%, 62%, 0.75);
+  transform-origin: center bottom;
+  transform: scaleY(1);
+  animation: fill 3s linear infinite;
+}
+
+@keyframes spin {
+  50%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fill {
+  25%,
+  50% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.slide-span {
+  font-family: 'Nunito Sans';
+  background-color: 'black';
+  font-size: 30px;
+}
+
+.header-button {
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 32%, 26%);
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
+  margin: 10px;
+}
+
+.header-button::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 100%;
+  right: 100%;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #3cefff;
+  transform-origin: center;
+  transform: translate(50%, -50%) scale(0);
+  transition: transform 0.45s ease-in-out;
+}
+
+.header-button:hover {
+  cursor: pointer;
+  color: #161616;
+}
+
+.header-button:hover::before {
+  transform: translate(50%, -50%) scale(15);
+}
+
+#headerComp {
+  background-image: linear-gradient(to right top, #ff0000, #ff0040, #ff0070, #ff009e, #eb12ca);
+  color: silver;
+  padding: 10px;
+  font-family: 'Nunito Sans';
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+h1 { 
+  font-family: 'Nunito Sans';
+  color: black;
+  font-size: 73px;
+}
+
+.slide-image {
+  background-repeat: no-repeat;
+  margin: 0px 65px;
+  height: 500px;
+}

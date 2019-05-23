@@ -25,10 +25,10 @@ body {
   /* border: 1px solid red; */
   display: grid;
   grid-template-columns: 66% 33%;
-  margin-top: 30px;
+  margin-top: 0px;
   margin-bottom: 100px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
   font-family: 'Montserrat', sans-serif;
 }
 

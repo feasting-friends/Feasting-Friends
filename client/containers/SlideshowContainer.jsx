@@ -9,7 +9,7 @@ import './SlideshowContainer.css'
 
 const SearchRestaurantsQuery = gql`
   { 
-		 yelp (name: "chinese", zipcode: 10013) {
+		 yelp (name: "chicken", zipcode: 10013) {
 			 image_url,
 			 name
      }

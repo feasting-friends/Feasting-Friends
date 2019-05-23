@@ -28,14 +28,15 @@ function LoginContainer() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         })
-        .then(resp => resp.json())
-        .then(res2 => {
-          if (res2.authenticated) {
-            setRedirect(res2.authenticated);
-          } else {
-          }
-        })
-        .catch(error => console.error('Error:', error)); }}>
+          .then(resp => resp.json())
+          .then(res2 => {
+            if (res2.authenticated) {
+              setRedirect(res2.authenticated);
+            } else {
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      }}>
         Login
       </button>
       {redirect && <Redirect to='/main' />}

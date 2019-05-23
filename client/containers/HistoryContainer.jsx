@@ -115,16 +115,17 @@ const HistoryContainer = (props) => {
     if (getLikes.loading) {
       return <div>Loading</div>
     } else if (getLikes.error) {
-      return(
-      <React.Fragment>
-        <div class="balls">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <ReloadBtn onClick={() => location.reload()}>Reload</ReloadBtn>
-      </React.Fragment>
-      )} else {
+      return (
+        <>
+          <div class="balls">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <ReloadBtn onClick={() => location.reload()}>Reload</ReloadBtn>
+        </>
+      )
+    } else {
       return getLikes.user.restaurants.map((rest) => (
         <RestaurantComponent
           {...rest}

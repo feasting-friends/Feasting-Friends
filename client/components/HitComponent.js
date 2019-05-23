@@ -13,9 +13,6 @@ const Wrapper = styled.div`
   padding: 5px;
   margin: 15px;
   color: #00414d;
-  text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
-    0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
-    0 0 40px #A5F1FF;
   font: "Palatino";
   border-radius: 6px;
   :hover {

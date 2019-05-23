@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Restaurant = styled.div`
-  border: none;
+  font-family: 'Didact Gothic', sans-serif;
+  border: 1px solid transparent;
   background-color: white;
   width: 300px;
   transition: 0.3s;
+  border-radius: 6px;
 
   :hover {
     box-shadow: 1px 0px 10px grey;
@@ -31,12 +33,25 @@ const DeleteBtn = styled.button`
   border-radius: 3px;
 `
 
+const Icon = styled.img`
+  height: 20px;
+  width: 20px;
+`
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 const RestaurantComponent = ({ _id, name, rating, display_address, price, review_count, deleteLikeMutation, getLikesQuery, userId }) => {
   return (
   <Restaurant>
     <RestaurantTitle>{name}</RestaurantTitle>
     <Info>
-      <p className="history-rating">Rating: {rating} </p>
+      <Row>
+        {rating} 
+        <Icon src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/star-512.png"/>
+      </Row>
       <p className="history-review-count">Review Count: {review_count}</p>
       <p className="history-price">Price: {price} </p>
       <p className="history-address">Address: {display_address} </p>

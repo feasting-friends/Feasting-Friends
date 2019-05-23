@@ -128,6 +128,4 @@ const SearchContainer = () => {
   )
 };
 
-export default compose(
-  graphql(AddRestaurantMutation, { name: 'AddRestaurantMutation' })
-)(SearchContainer);
+export default SearchContainer;

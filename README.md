@@ -15,6 +15,14 @@ munchin lunchin had some issues
 - enzyme test suite
 - `async await`-ed all `.then`ables
 - used dotenv for api keys
-- forced reload whenever you like it one
+- forced reload whenever you like it a thing (YES, IT'S A FEATURE)
 
 ## what we didn't
+
+- fix the webpack dev server (aka ran `npm run build && npm run start`)
+
+## biggest techinical challenges
+
+- graphql
+- css
+- babel-loaders (see: testing)

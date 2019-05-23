@@ -53,6 +53,16 @@ const HistoryTitle = styled.p`
 
 const HistorySection = styled.div`
   padding: 0px 40px;
+  animation-name: slideInRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+
+  @keyframes slideInRight {
+    from {
+      transform: translate3d(100%, 0, 0);
+      visibility: visible;
+    }
+  }
 `
 const Icon = styled.img`
   height: 50px;
